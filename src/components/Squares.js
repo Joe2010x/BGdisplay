@@ -10,6 +10,7 @@ const Squares = ({inputArray,size,onClick}) => {
         console.log('screen x is : ',event.screenX);
         let clientX = event.clientX;
         let clientY = event.clientY;
+        console.log();
         setMarkers([...markers,[clientX,clientY]]);
         console.log(markers);
         onClick(event);
@@ -30,9 +31,10 @@ const Squares = ({inputArray,size,onClick}) => {
                     onMouseDown={e=>{handleMD(e)}}>{item}</span>) )
             }
             { markers && 
-            markers.map(coordinate =><img className={"img--"+size}
-                style={{top:`${(coordinate[1]-50-20)}px`,left:`${coordinate[0]-20}px`}}
-                src={require("./marker.png")}/>)}
+            markers.map((coordinate, index) =><img key={'img'+index} className={"img--"+size}
+                // style={{top:`${(coordinate[1]-50-20)}px`,left:`${coordinate[0]-20}px`,rotate:`${(coordinate[0]+coordinate[1])%360-180}deg`}}
+                style={{top:`${(coordinate[1]-50-20)}px`,left:`${coordinate[0]-20}px`,transform: `rotate(${((coordinate[0]+coordinate[1])%360-180)}deg)`}}
+                src={require("./happy.png")}/>)}
         </div>
     )
 }
